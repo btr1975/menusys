@@ -63,3 +63,6 @@ target/
 
 # No Tlde Endings
 *~
+
+# No Jetbrains Info
+.idea/
