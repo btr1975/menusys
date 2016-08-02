@@ -11,7 +11,8 @@
 ##########################################################
 import os as __os
 import platform as __platform
-__version__ = "1.1.0"
+import textwrap as __textwrap
+__version__ = "1.1.1"
 __author__ = "Benjamin P. Trachtenberg Contact: e_ben_75-python@yahoo.com"
 
 
@@ -60,7 +61,45 @@ Functions usage changes in v1.1.0
 menu(menu_dictionary, menu_header, back_function=None) <-- Returns q if quit instead of exiting
 menu_multi_select(menu_dictionary, menu_header, back_function=None) <-- Returns q if quit instead of exiting
 
+Functions included in v1.1.1
+word_wrap_string_and_print(string_to_wrap)
+chunk_up_string(string_to_chunk, size_of_chunk=100):
+
 """
+
+
+def word_wrap_string_and_print(string_to_wrap):
+    """
+    Function to word wrap a string depending on the console
+    Args:
+        string_to_wrap: The string that will be wrapped
+
+    Returns:
+        Nothing, but it does call the print function
+
+    """
+    try:
+        term_width, term_height = __os.get_terminal_size()
+    except OSError:
+        term_width = 80
+    print(__textwrap.fill(string_to_wrap, term_width - 10))
+
+
+def chunk_up_string(string_to_chunk, size_of_chunk=100):
+    """
+    Function to chunk up a string
+    Args:
+        string_to_chunk: The string you want to chunk up
+        size_of_chunk: The size of the chunks in characters
+
+    Returns:
+        A list containing the chunks.
+
+    """
+    temp_list = list()
+    for chunk in range(0, len(string_to_chunk), size_of_chunk):
+        temp_list.append(string_to_chunk[chunk:chunk + size_of_chunk])
+    return temp_list
 
 
 def menu(menu_dictionary, menu_header, back_function=None):
@@ -77,7 +116,7 @@ def menu(menu_dictionary, menu_header, back_function=None):
     max_menu_entries = 0
     options_list = list(menu_dictionary.keys())
     options_list.sort()
-    print(menu_header)
+    word_wrap_string_and_print(menu_header)
     for options_list_line in options_list:
         if len(str(options_list_line)) == 1:
             print("%i ) %s" % (options_list_line, menu_dictionary[options_list_line]["MENU"]))
@@ -142,7 +181,7 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None):
     max_menu_entries = 0
     options_list = list(menu_dictionary.keys())
     options_list.sort()
-    print(menu_header)
+    word_wrap_string_and_print(menu_header)
     for options_list_line in options_list:
         max_menu_entries += 1
     while selected_option != "c":
