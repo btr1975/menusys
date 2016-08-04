@@ -87,7 +87,7 @@ def word_wrap_string_and_print(string_to_wrap):
 
 def chunk_up_string(string_to_chunk, size_of_chunk=100):
     """
-    Function to chunk up a string
+    Function to chunk up a string, and make a list of chunks
     Args:
         string_to_chunk: The string you want to chunk up
         size_of_chunk: The size of the chunks in characters
