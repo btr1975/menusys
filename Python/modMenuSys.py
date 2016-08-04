@@ -12,7 +12,7 @@
 import os as __os
 import platform as __platform
 import textwrap as __textwrap
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 __author__ = "Benjamin P. Trachtenberg Contact: e_ben_75-python@yahoo.com"
 
 
@@ -63,7 +63,10 @@ menu_multi_select(menu_dictionary, menu_header, back_function=None) <-- Returns 
 
 Functions included in v1.1.1
 word_wrap_string_and_print(string_to_wrap)
-chunk_up_string(string_to_chunk, size_of_chunk=100):
+chunk_up_string(string_to_chunk, size_of_chunk=100)
+
+Functions included in v1.1.2
+word_wrap_string(string_to_wrap)
 
 """
 
@@ -71,6 +74,7 @@ chunk_up_string(string_to_chunk, size_of_chunk=100):
 def word_wrap_string_and_print(string_to_wrap):
     """
     Function to word wrap a string depending on the console
+    and print it
     Args:
         string_to_wrap: The string that will be wrapped
 
@@ -83,6 +87,23 @@ def word_wrap_string_and_print(string_to_wrap):
     except OSError:
         term_width = 80
     print(__textwrap.fill(string_to_wrap, term_width - 10))
+
+
+def word_wrap_string(string_to_wrap):
+    """
+    Function to word wrap a string depending on the console
+    Args:
+        string_to_wrap: The string that will be wrapped
+
+    Returns:
+        A word wrapped string
+
+    """
+    try:
+        term_width, term_height = __os.get_terminal_size()
+    except OSError:
+        term_width = 80
+    return __textwrap.fill(string_to_wrap, term_width - 10)
 
 
 def chunk_up_string(string_to_chunk, size_of_chunk=100):
