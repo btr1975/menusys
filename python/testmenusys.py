@@ -1,7 +1,7 @@
 import unittest
 import sys
 import io
-from modMenuSys import menu, menu_multi_select
+from menusys import menu, menu_multi_select
 
 test_dict = {
     1: {'MENU': 'Item 1'},
@@ -35,6 +35,16 @@ class TestMenu(unittest.TestCase):
         f.close()
         self.assertNotEqual('2', response)
 
+    def test_menu_response_2_no_quit(self):
+        """Test if menu responds correctly"""
+        f1 = sys.stdin
+        f = io.StringIO('3')
+        sys.stdin = f
+        response = menu(test_dict, 'HEAD', no_quit=True)
+        sys.stdin = f1
+        f.close()
+        self.assertNotEqual('2', response)
+
 
 class TestMultiMenu(unittest.TestCase):
 
@@ -44,6 +54,16 @@ class TestMultiMenu(unittest.TestCase):
         f = io.StringIO('2\n3\nc\n')
         sys.stdin = f
         response = menu_multi_select(test_dict, 'HEAD')
+        sys.stdin = f1
+        f.close()
+        self.assertListEqual(['2', '3'], response)
+
+    def test_menu_response_no_quit(self):
+        """Test if multi menu responds correctly"""
+        f1 = sys.stdin
+        f = io.StringIO('2\n3\nc\n')
+        sys.stdin = f
+        response = menu_multi_select(test_dict, 'HEAD', no_quit=True)
         sys.stdin = f1
         f.close()
         self.assertListEqual(['2', '3'], response)

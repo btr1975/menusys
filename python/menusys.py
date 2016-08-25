@@ -10,13 +10,14 @@
 #                                                        #
 ##########################################################
 import os as __os
+import sys as __sys
 import platform as __platform
 import textwrap as __textwrap
 __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
-__version__ = (1, 1, 2)
+__version__ = (1, 1, 3)
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
 __status__ = "Production"
@@ -129,13 +130,15 @@ def chunk_up_string(string_to_chunk, size_of_chunk=100):
     return temp_list
 
 
-def menu(menu_dictionary, menu_header, back_function=None):
+def menu(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_sys_exit=None):
     """
     Function to create a menu from a dictionary with a back option
     Args:
         menu_dictionary: Dictionary in the following format {1: {'MENU': 'Yes'}, 2: {'MENU': 'No'}}
         menu_header: The header of the menu
         back_function: Function to return to if back is pushed
+        no_quit: Set to true if you do not want a quit option
+        allow_sys_exit: Set to true if you want the menu to quit the app, default returns q
 
     Returns: returns the selected option
 
@@ -152,14 +155,19 @@ def menu(menu_dictionary, menu_header, back_function=None):
         max_menu_entries += 1
     if back_function:
         print("B ) Back")
-    print("Q ) Quit")
+    if not no_quit:
+        print("Q ) Quit")
     selected_option = input("Please make a selection: ")
     selected_option = selected_option.lower()
     if back_function:
         if selected_option == "b":
             return back_function()
-    if selected_option == "q":
-        return "q"
+    if not no_quit:
+        if selected_option == "q":
+            if allow_sys_exit:
+                __sys.exit('Application Quit')
+            else:
+                return "q"
     try:
         int(selected_option)
     except:
@@ -177,8 +185,12 @@ def menu(menu_dictionary, menu_header, back_function=None):
         if back_function:
             if selected_option == "b":
                 return back_function()
-        if selected_option == "q":
-            return "q"
+        if not no_quit:
+            if selected_option == "q":
+                if allow_sys_exit:
+                    __sys.exit('Application Quit')
+                else:
+                    return "q"
         try:
             int(selected_option)
         except:
@@ -192,13 +204,15 @@ def menu(menu_dictionary, menu_header, back_function=None):
     return selected_option
 
 
-def menu_multi_select(menu_dictionary, menu_header, back_function=None):
+def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_sys_exit=None):
     """
     Function to create a menu from a dictionary with a back option
     Args:
         menu_dictionary: Dictionary in the following format {1: {'MENU': 'Yes'}, 2: {'MENU': 'No'}}
         menu_header: The header of the menu
         back_function: Function to return to if back is pushed
+        no_quit: Set to true if you do not want a quit option
+        allow_sys_exit: Set to true if you want the menu to quit the app, default returns q
 
     Returns: returns the selected options in a list
 
@@ -226,7 +240,8 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None):
         if back_function:
             print("B ) Back")
         print("C ) Continue")
-        print("Q ) Quit")
+        if not no_quit:
+            print("Q ) Quit")
         selected_option = input("Please make a selection: ")
         selected_option = selected_option.lower()
         if back_function:
@@ -234,8 +249,12 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None):
                 return back_function()
         if selected_option == "c":
             return selections_list
-        if selected_option == "q":
-            return "q"
+        if not no_quit:
+            if selected_option == "q":
+                if allow_sys_exit:
+                    __sys.exit('Application Quit')
+                else:
+                    return "q"
         try:
             int(selected_option)
         except:
@@ -255,8 +274,12 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None):
                     return back_function()
             if selected_option == "c":
                 return selections_list
-            if selected_option == "q":
-                return "q"
+            if not no_quit:
+                if selected_option == "q":
+                    if allow_sys_exit:
+                        __sys.exit('Application Quit')
+                    else:
+                        return "q"
             try:
                 int(selected_option)
             except:
@@ -293,7 +316,8 @@ def make_menu_dict_from_dict(orig_dict, dict_key_for_display):
     temp_dict = dict()
     menu_new_key = 1
     for orig_dict_key in orig_dict:
-        temp_dict[menu_new_key] = {'MENU': orig_dict[orig_dict_key][dict_key_for_display], 'SUBDIC': orig_dict[orig_dict_key]}
+        temp_dict[menu_new_key] = {'MENU': orig_dict[orig_dict_key][dict_key_for_display],
+                                   'SUBDIC': orig_dict[orig_dict_key]}
         menu_new_key += 1
     return temp_dict
 
