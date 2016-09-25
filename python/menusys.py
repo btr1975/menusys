@@ -9,6 +9,7 @@
 # Menu system tools                                      #
 #                                                        #
 ##########################################################
+import logging
 import os as __os
 import sys as __sys
 import platform as __platform
@@ -17,19 +18,14 @@ __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
-__version__ = '1.1.3'
+__version__ = '1.1.4'
 __version_info__ = tuple([int(num) for num in __version__.split('.')])
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
 __status__ = "Production"
 
+LOGGER = logging.getLogger(__name__)
 
-# Third party libraries
-""" Place third party libraries here """
-# My made libraries
-""" Place your made libraries here """
-
-# BEGIN DICTIONARIES
 """ Dictionaries included in v1.0.0
 
 dicYorN = Yes or No select
@@ -45,9 +41,6 @@ prim_sec_dict = {
     1: {"MENU": "Primary"},
     2: {"MENU": "Secondary"}}
 
-# END DICTIONARIES
-
-# BEGIN FUNCTIONS
 """ Functions included in v1.0.0
 
 menu(menu_dictionary, menu_header, back_function=None)
@@ -93,6 +86,7 @@ def word_wrap_string_and_print(string_to_wrap):
     try:
         term_width, term_height = __os.get_terminal_size()
     except OSError:
+        LOGGER.critical('Function word_wrap_string_and_print OSError')
         term_width = 80
     print(__textwrap.fill(string_to_wrap, term_width - 10))
 
@@ -110,6 +104,7 @@ def word_wrap_string(string_to_wrap):
     try:
         term_width, term_height = __os.get_terminal_size()
     except OSError:
+        LOGGER.critical('Function word_wrap_string OSError')
         term_width = 80
     return __textwrap.fill(string_to_wrap, term_width - 10)
 
@@ -148,37 +143,46 @@ def menu(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_s
     options_list = list(menu_dictionary.keys())
     options_list.sort()
     word_wrap_string_and_print(menu_header)
+
     for options_list_line in options_list:
         if len(str(options_list_line)) == 1:
             print("%i ) %s" % (options_list_line, menu_dictionary[options_list_line]["MENU"]))
         elif len(str(options_list_line)) == 2:
             print("%i) %s" % (options_list_line, menu_dictionary[options_list_line]["MENU"]))
         max_menu_entries += 1
+
     if back_function:
         print("B ) Back")
+
     if not no_quit:
         print("Q ) Quit")
+
     selected_option = input("Please make a selection: ")
     selected_option = selected_option.lower()
+
     if back_function:
         if selected_option == "b":
             return back_function()
+
     if not no_quit:
         if selected_option == "q":
             if allow_sys_exit:
                 __sys.exit('Application Quit')
             else:
                 return "q"
+
     try:
         int(selected_option)
-    except:
+    except ValueError:
         selected_option = "0"
+
     if int(selected_option) == 0:
         good_selection = False
     elif int(selected_option) > max_menu_entries:
         good_selection = False
     else:
         good_selection = True
+
     while not good_selection:
         print("That selection is no good!!")
         selected_option = input("Please make a selection: ")
@@ -194,14 +198,16 @@ def menu(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_s
                     return "q"
         try:
             int(selected_option)
-        except:
+        except ValueError:
             selected_option = "0"
+
         if int(selected_option) == 0:
             good_selection = False
         elif int(selected_option) > max_menu_entries:
             good_selection = False
         else:
             good_selection = True
+
     return selected_option
 
 
@@ -224,8 +230,10 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=
     options_list = list(menu_dictionary.keys())
     options_list.sort()
     word_wrap_string_and_print(menu_header)
+
     for options_list_line in options_list:
         max_menu_entries += 1
+
     while selected_option != "c":
         for options_list_line in options_list:
             if len(str(options_list_line)) == 1:
@@ -238,6 +246,7 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=
                     print("%i) %s" % (options_list_line, menu_dictionary[options_list_line]["MENU"]))
                 except:
                     pass
+
         if back_function:
             print("B ) Back")
         print("C ) Continue")
@@ -258,14 +267,16 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=
                     return "q"
         try:
             int(selected_option)
-        except:
+        except ValueError:
             selected_option = "0"
+
         if int(selected_option) == 0:
             good_selection = False
         elif int(selected_option) > max_menu_entries:
             good_selection = False
         else:
             good_selection = True
+
         while not good_selection:
             print("That selection is no good!!")
             selected_option = input("Please make a selection: ")
@@ -283,23 +294,28 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=
                         return "q"
             try:
                 int(selected_option)
-            except:
+            except ValueError:
                 selected_option = "0"
+
             if int(selected_option) == 0:
                 good_selection = False
             elif int(selected_option) > max_menu_entries:
                 good_selection = False
             else:
                 good_selection = True
+
         try:
             del menu_dictionary[int(selected_option)]
-        except:
+        except KeyError:
             print('You have already made that selection!!  Please try again.')
+
         already_selected = False
+
         for options_check in selections_list:
             if selected_option == options_check:
                 already_selected = True
                 break
+
         if not already_selected:
             selections_list.append(selected_option)
 
