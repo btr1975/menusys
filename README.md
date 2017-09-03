@@ -7,10 +7,16 @@
 
 ### LinkedIn: [Ben Trachtenberg](https://www.linkedin.com/in/ben-trachtenberg-3a78496)
 ### Docker Hub: [Docker Hub](https://hub.docker.com/r/btr1975)
+### PyPi Page for [menusys](https://pypi.python.org/pypi/menusys)
 
 ### Requirements
 
 * Nothing Specific besides Python 3.5 and above
+
+### Installation
+
+* From source "setup.py install"
+* From pip "pip install menusys"
 
 ### Languages
 
