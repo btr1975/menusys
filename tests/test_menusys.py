@@ -1,7 +1,7 @@
 import sys
 import io
-from menusys import menu, menu_multi_select, make_menu_dict_from_dict, make_menu_dict_from_list, \
-                    chunk_up_string
+from menusys.menusys import menu, menu_multi_select, make_menu_dict_from_dict, make_menu_dict_from_list, \
+                            chunk_up_string
 
 test_dict = {
     1: {'MENU': 'Item 1'},

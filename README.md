@@ -10,16 +10,15 @@
 
 ### Requirements
 
-* Nothing Specific besides Python 3
+* Nothing Specific besides Python 3.5 and above
 
 ### Languages
 
 * Python
-* Groovy
 
 ### About
 
-This is a library used to have a CLI menu system.  The Python, and groovy versions may not be exactly the same since my focus was on the Python version.
+This is a library used to have a CLI menu system.
 
 ### Functions included in v1.0.0
 
