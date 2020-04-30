@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 ##########################################################
-# Script Name: modMenuSys.py                             #
+# Script Name: menusys.py                                #
 # Script Type: Python                                    #
 # Updated By: Benjamin P. Trachtenberg                   #
 # Date Written 1/11/2015                                 #
@@ -19,19 +19,13 @@ __copyright__ = "Copyright (c) 2016, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
 __status__ = 'prod'
-__version_info__ = (1, 1, 5)
+__version_info__ = (2020, 4, 30)
 __version__ = '.'.join(map(str, __version_info__))
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
 
 LOGGER = logging.getLogger(__name__)
 
-""" Dictionaries included in v1.0.0
-
-dicYorN = Yes or No select
-dicPorS = Primary or Secondary select
-
-"""
 
 yes_no_dict = {
     1: {"MENU": "Yes"},
@@ -41,46 +35,17 @@ prim_sec_dict = {
     1: {"MENU": "Primary"},
     2: {"MENU": "Secondary"}}
 
-""" Functions included in v1.0.0
-
-menu(menu_dictionary, menu_header, back_function=None)
-clear_screen()
-
-Functions included in v1.0.2
-
-menu_multi_select(menu_dictionary, menu_header, back_function=None)
-
-Functions included in v1.0.3
-
-make_menu_dict_from_dict(orig_dict, dict_key_for_display)
-
-Functions included in v1.0.4
-
-make_menu_dict_from_list(orig_list)
-
-Functions usage changes in v1.1.0
-menu(menu_dictionary, menu_header, back_function=None) <-- Returns q if quit instead of exiting
-menu_multi_select(menu_dictionary, menu_header, back_function=None) <-- Returns q if quit instead of exiting
-
-Functions included in v1.1.1
-word_wrap_string_and_print(string_to_wrap)
-chunk_up_string(string_to_chunk, size_of_chunk=100)
-
-Functions included in v1.1.2
-word_wrap_string(string_to_wrap)
-
-"""
-
 
 def word_wrap_string_and_print(string_to_wrap):
     """
     Function to word wrap a string depending on the console
     and print it
-    Args:
-        string_to_wrap: The string that will be wrapped
 
-    Returns:
-        Nothing, but it does call the print function
+    :type string_to_wrap: String
+    :param string_to_wrap: The string you want to wrap
+
+    :rtype: None
+    :return: None but it does call the print function
 
     """
     try:
@@ -94,11 +59,12 @@ def word_wrap_string_and_print(string_to_wrap):
 def word_wrap_string(string_to_wrap):
     """
     Function to word wrap a string depending on the console
-    Args:
-        string_to_wrap: The string that will be wrapped
 
-    Returns:
-        A word wrapped string
+    :type string_to_wrap: String
+    :param string_to_wrap: The string you want to wrap
+
+    :rtype: String
+    :return: A word wrapped string
 
     """
     try:
@@ -112,12 +78,15 @@ def word_wrap_string(string_to_wrap):
 def chunk_up_string(string_to_chunk, size_of_chunk=100):
     """
     Function to chunk up a string, and make a list of chunks
-    Args:
-        string_to_chunk: The string you want to chunk up
-        size_of_chunk: The size of the chunks in characters
 
-    Returns:
-        A list containing the chunks.
+    :type string_to_chunk: String
+    :param string_to_chunk: The string you want to chunk up
+
+    :type size_of_chunk: Integer
+    :param size_of_chunk: The size of the chunks in characters
+
+    :rtype: List
+    :return: A list containing the chunks.
 
     """
     temp_list = list()
@@ -129,14 +98,20 @@ def chunk_up_string(string_to_chunk, size_of_chunk=100):
 def menu(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_sys_exit=None):
     """
     Function to create a menu from a dictionary with a back option
-    Args:
-        menu_dictionary: Dictionary in the following format {1: {'MENU': 'Yes'}, 2: {'MENU': 'No'}}
-        menu_header: The header of the menu
-        back_function: Function to return to if back is pushed
-        no_quit: Set to true if you do not want a quit option
-        allow_sys_exit: Set to true if you want the menu to quit the app, default returns q
 
-    Returns: returns the selected option
+    :type menu_dictionary: Dict
+    :param menu_dictionary: Dictionary in the following format {1: {'MENU': 'Yes'}, 2: {'MENU': 'No'}
+    :type menu_header: String
+    :param menu_header: The header of the menu
+    :type back_function: Function
+    :param back_function: The callback Function
+    :type no_quit: Boolean
+    :param no_quit: Set to True if you do not want a quit option
+    :type allow_sys_exit: Boolean
+    :param allow_sys_exit: Set to true if you want the menu to quit the app, default returns q
+
+    :rtype: String
+    :return: The selected option
 
     """
     max_menu_entries = 0
@@ -214,14 +189,20 @@ def menu(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_s
 def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=None, allow_sys_exit=None):
     """
     Function to create a menu from a dictionary with a back option
-    Args:
-        menu_dictionary: Dictionary in the following format {1: {'MENU': 'Yes'}, 2: {'MENU': 'No'}}
-        menu_header: The header of the menu
-        back_function: Function to return to if back is pushed
-        no_quit: Set to true if you do not want a quit option
-        allow_sys_exit: Set to true if you want the menu to quit the app, default returns q
 
-    Returns: returns the selected options in a list
+    :type menu_dictionary: Dict
+    :param menu_dictionary: Dictionary in the following format {1: {'MENU': 'Yes'}, 2: {'MENU': 'No'}
+    :type menu_header: String
+    :param menu_header: The header of the menu
+    :type back_function: Function
+    :param back_function: The callback Function
+    :type no_quit: Boolean
+    :param no_quit: Set to True if you do not want a quit option
+    :type allow_sys_exit: Boolean
+    :param allow_sys_exit: Set to true if you want the menu to quit the app, default returns q
+
+    :rtype: List
+    :return: The selected options in a list
 
     """
     selections_list = []
@@ -323,53 +304,65 @@ def menu_multi_select(menu_dictionary, menu_header, back_function=None, no_quit=
 def make_menu_dict_from_dict(orig_dict, dict_key_for_display):
     """
     Function to create a menu dictionary with sub dictionary
-    Args:
-        orig_dict: Dictionary you want to make a menu from
-        dict_key_for_display: Dictionary item to become the menu
 
-    Returns: returns a dictionary with menu and dictionary in line
+    :type orig_dict: Dict
+    :param orig_dict: Dictionary you want to make a menu from
+    :type dict_key_for_display: String
+    :param dict_key_for_display: Dictionary item to become the menu
+
+    :rtype: Dict
+    :return: A dictionary with menu and dictionary in line
 
     """
     temp_dict = dict()
     menu_new_key = 1
+
     for orig_dict_key in orig_dict:
         temp_dict[menu_new_key] = {'MENU': orig_dict[orig_dict_key][dict_key_for_display],
                                    'SUBDIC': orig_dict[orig_dict_key]}
         menu_new_key += 1
+
     return temp_dict
 
 
 def make_menu_dict_from_list(orig_list):
     """
     Function to create a menu dictionary from a list
-    Args:
-        orig_list: List you want to make a menu from
 
-    Returns: returns a dictionary with menu
+    :type orig_list: List
+    :param orig_list: List you want to make a menu from
+
+    :rtype: Dict
+    :return: A dictionary with menu
 
     """
     temp_dict = dict()
     menu_new_key = 1
+
     for orig_list_line in orig_list:
         temp_dict[menu_new_key] = {'MENU': orig_list_line}
         menu_new_key += 1
+
     return temp_dict
 
 
 def clear_screen():
     """
     Function to do a clear screen in Linux or Windows
-    Returns:
+
+    :rtype: None
+    :return: None it clears the screen
 
     """
     if __platform.system() == "Windows":
         __os.system("cls")
+
     elif __platform.system() == "Linux":
         __os.system("clear")
+
     else:
         print("Your OS doesn't seem to be supported!")
 
-# END FUNCTIONS
 
 if __name__ == "__main__":
     help(__name__)

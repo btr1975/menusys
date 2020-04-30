@@ -1,7 +1,10 @@
 import sys
 import io
-from menusys.menusys import menu, menu_multi_select, make_menu_dict_from_dict, make_menu_dict_from_list, \
-                            chunk_up_string
+import os
+base_path = os.path.join(os.path.abspath(os.path.dirname(__name__)))
+sys.path.append(os.path.join(base_path, 'menusys'))
+from menusys import menu, menu_multi_select, make_menu_dict_from_dict, make_menu_dict_from_list, chunk_up_string
+
 
 test_dict = {
     1: {'MENU': 'Item 1'},

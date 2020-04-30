@@ -1,14 +1,17 @@
 Python Script: menusys
 ======================
 
+Current Version 2020.4.30.1
+---------------------------
+
 Written By: Benjamin P. Trachtenberg
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have any questions e-mail me
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Contact Information: e\_ben\_75-python@yahoo.com
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Contact Information: e_ben_75-python@yahoo.com
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LinkedIn: `Ben Trachtenberg <https://www.linkedin.com/in/ben-trachtenberg-3a78496>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -16,10 +19,19 @@ LinkedIn: `Ben Trachtenberg <https://www.linkedin.com/in/ben-trachtenberg-3a7849
 Docker Hub: `Docker Hub <https://hub.docker.com/r/btr1975>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+PyPi Page for `menusys <https://pypi.python.org/pypi/menusys>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Requirements
 ~~~~~~~~~~~~
 
 -  Nothing Specific besides Python 3.5 and above
+
+Installation
+~~~~~~~~~~~~
+
+-  From source “setup.py install”
+-  From pip “pip install menusys”
 
 Languages
 ~~~~~~~~~
@@ -34,32 +46,31 @@ This is a library used to have a CLI menu system.
 Functions included in v1.0.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  menu(menu\_dictionary, menu\_header, back\_function=None)
--  clear\_screen()
+-  menu(menu_dictionary, menu_header, back_function=None)
+-  clear_screen()
 
 Functions added in v1.0.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  menu\_multi\_select(menu\_dictionary, menu\_header,
-   back\_function=None)
+-  menu_multi_select(menu_dictionary, menu_header, back_function=None)
 
 Functions added in v1.0.3
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  make\_menu\_dict\_from\_dict(orig\_dict, dict\_key\_for\_display)
+-  make_menu_dict_from_dict(orig_dict, dict_key_for_display)
 
 Functions added in v1.0.4
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  make\_menu\_dict\_from\_list(orig\_list)
+-  make_menu_dict_from_list(orig_list)
 
 Functions added in v1.1.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  word\_wrap\_string\_and\_print(string\_to\_wrap)
--  chunk\_up\_string(string\_to\_chunk, size\_of\_chunk=100)
+-  word_wrap_string_and_print(string_to_wrap)
+-  chunk_up_string(string_to_chunk, size_of_chunk=100)
 
 Functions added in v1.1.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  word\_wrap\_string(string\_to\_wrap)
+-  word_wrap_string(string_to_wrap)
