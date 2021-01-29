@@ -1,5 +1,4 @@
 # Python Script: menusys
-## Current Version 1.1.7
 
 ### Written By: Benjamin P. Trachtenberg
 ### If you have any questions e-mail me
