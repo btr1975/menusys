@@ -1,3 +1,5 @@
+[![Unit-Testing, Coverage, Linting](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml/badge.svg)](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml)
+
 # Python Script: menusys
 
 ### Written By: Benjamin P. Trachtenberg
