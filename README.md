@@ -1,4 +1,10 @@
-[![Unit-Testing, Coverage, Linting](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml/badge.svg)](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml)
+| BRANCH | STATUS |
+|---|---|
+| master | [![Unit-Testing, Coverage, Linting](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml/badge.svg?branch=master)](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml) |
+| develop | [![Unit-Testing, Coverage, Linting](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml/badge.svg?branch=develop)](https://github.com/btr1975/menusys/actions/workflows/test-coverage-lint.yml) |
+
+[![Downloads](https://pepy.tech/badge/menusys)](https://pepy.tech/project/menusys)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/menusys.svg)](https://pypi.org/project/menusys)
 
 # Python Script: menusys
 
@@ -13,7 +19,7 @@
 
 ### Requirements
 
-* Nothing Specific besides Python 3.5 and above
+* Nothing Specific besides Python 3.6 and above
 
 ### Installation
 
